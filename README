@@ -1,0 +1,275 @@
+
+
+
+kotlin知识点
+
+字符串
+    1.模版
+
+操作符
+
+    2.elvis操作符
+    3.lambda表达式
+
+
+    IndexedValue 和 Iterable<IndexedValue<T>>
+    when  in !in
+    标签 label
+    重载操作符
+    ++(后缀inc),--(后缀dec),.,?.,?
+    (前缀inc)++,(前缀dec)--,!,标签@
+    :,as,as?
+    *(times),/(div),%(rem,mod)
+    +(plus),-(minus)
+    ..(rangeTo)
+    infix
+    ?:
+    in(b.contains(a)) !in(!b.contains(a)) is !is
+    <(a.compareTo(b)<0),>(a.compareTo(b)>0),<=(a.compareTo(b)<=0),>=(a.compareTo(b)>=0)
+    ==,!=,===,!==
+    &&
+    \|\|
+    =,+=(a.plusAssign(b)),-=(a.minusAssign(b)),*=(a.timesAssign(b)),/=(a.divAssign(b)),%=(a.modAssign(b))
+
+    数据类型
+
+
+
+函数
+    1.tailrec 尾递归
+    2.operator 运算符重载函数
+    3.infix 中缀函数
+    4.inline  内联函数  (怎么弄)
+    5.external  外联函数
+    6.suspend   挂起协程函数
+
+
+    1.扩展函数
+    2.闭包
+    lambda 作为函数参数的代码块
+    尝试去实现他的一些方法，比如maxBy,filter
+    简单的扩展函数，高阶扩展函数, 传参的完整写法和简写
+
+类:
+   1.abstract 抽象类
+   2.final 不可被继承类
+   3.enum 枚举类
+   4.open 可继承open类 父类型不能转换为子类型
+   5.annotation 注解类
+   6.sealed 密封类
+   7.data 数据类
+
+   1.内部类
+        1.1 内部类访问外部属性
+
+   2.外部类
+   3.静态类
+   4.委托类
+   封装:将属性与行为绑定在一起,内聚
+   继承：通过扩展原来的类，声明新类；子类可以拥有超类的所有属性和方法
+   多态：允许将子类类型的指针赋值给父类类型的指针;给予对象类型的动态分派
+
+   lateinit 不能修饰基本类型；可修饰对象
+   如果实现的两个接口有相同的方法,需使用super<接口名>.方法名
+   object: 一种是对象表达式(接口);另一种是对象声明(声明类,声明静态内部类),类似java的懒加载
+   companion object:一个类最多定义一个伴生对象,类似java中的静态方法
+
+
+/////////////函数/////////////////
+
+3.infix 中缀函数
+条件:1)方法前加infix关键字;2)只有一个参数;3)必须是成员方法或者扩展方法
+作用:提升代码可阅读性
+
+4.inline 内联函数
+  noinline,crossinline
+
+
+
+
+
+
+
+
+
+字符串模板
+$varName 表示变量值
+${varName.fun()} 表示变量的方法返回值
+
+
+空类型检查
+var a = null; //编译不通过
+类型后面加?表示可以为空
+如果变量为null，变量?.fun() 或者!!.fun()都会抛出空指针
+变量?返回值 ?: -1 如果变量?返回值为空，则返回-1 evils表达式
+!!. 确定变量不为空的情况下使用
+String 是String?的子类
+
+编译期常量 const val
+var变量
+val只读变量
+
+运算符重载
+中缀表达式
+== equals
+equal和hashcode
+
+自动类型转换
+is 运算符
+
+区间
+(i in min..max ) [min,max]
+(i in min..max step stepNum)
+(i in max downTo min step stepNum)
+(i in min until max) [min,max)
+
+=== 比较对象地址; == 表示两个值大小
+
+val z =  if(condition) x else y
+try catch
+数组初始化
+arrayOf("a","b","c")
+intArrayOf(1,2,3)
+
+get set
+
+
+ceil的英文意义是天花板，该方法就表示向上取整，
+所以，Math.ceil(11.3)的结果为12,Math.ceil(-11.3)的结果是-11；
+
+floor的英文意义是地板，该方法就表示向下取整，
+所以，Math.floor(11.6)的结果为11,Math.floor(-11.6)的结果是-12;
+
+round方法表示“四舍五入”，算法为Math.floor(x+0.5)，
+即将原来的数字加上0.5后再向下取整
+
+类默认是public
+变量必须初始化
+open修饰类 表示可以继承
+不是抽象方法，open 表示方法可以覆写；不加open关键字,方法不可以覆写;
+覆写方法，需要在方法前加 override关键字
+方法加了final,子类不可覆写该方法
+
+属性引用
+val ageRef = Person::age
+
+状态只能在类中有?
+
+sealed的作用,协变object
+Boolean扩展
+SharedPreferences扩展
+Properties扩展
+
+
+
+receiverType:表示函数的接收者,也就是函数扩展的对象
+functionName:扩展函数的名称
+params:扩展函数的参数,可以为NULL
+
+data关键字 创建一个只包含数据的类
+1.主构造函数至少包含一个参数
+2.所有的主构造函数的参数必须标识为val 或者 var ;
+3.数据类不可以声明为 abstract, open, sealed 或者 inner
+4.数据类不能继承其他类 (但是可以实现接口)
+
+编译期常量 const 1.只能定义在你全局范围;2.只能修饰基本类型;3.必须立即用字面量初始化
+val map = mutableMapOf("Hello" to 2, "world" to 3)
+获取 map["Hello"]
+设置 map.set("world",3)
+> compareTo; + plus; in contains
+
+中缀表达式 receiver + 一个参数
+lambda表达式 是一个匿名函数 single abstract method
+
+val func = fun(){
+   println("abc")
+}
+func() 调用
+
+
+在使用hashSet的时候,添加一个对象，不要改变对象的属性
+
+参数类型包含函数类型或者返回值类型为函数类型的函数为高阶函数
+
+val ints = intArrayOf(1,2,3,4)
+ints.forEach{
+...
+}
+
+inline fun IntArray.forEach(action:(Int)->Unit):Unit{
+    for(element in this) action(element)
+}
+
+内联函数:在编译时间就会把内容替换到调用该方法的地方,这样会减少方法压栈出栈,进而减少资源消耗
+如果是调用非内联的函数,需要在内联函数的形参加 noinline
+inline fun testInline( noinline action:()->Unit){
+        println("call before")
+        action()
+        otherMehtod(action);
+        println("call after")
+}
+
+fun <T> otherMehtod(body: ()-> T){
+
+}
+
+高阶函数内联:1.return; 2.non-local return
+内联属性
+noinline就是不内联。 crossinline主要用于如果lambda内联后不在调用处的函数调用栈上，这时候nonlocal return是被禁止的。
+
+几个有用的函数
+let    val r = X.let{x -> R}
+run    val r = X.run{this:x -> R}
+also   val x = X.also{x -> Unit}
+apply  val x = X.apply{this:x -> Unit}
+use    val r = Closable.use{c -> R} //自动关闭资源
+let 和 run 高阶函数自己的返回
+also 和 apply 返回值是receiver
+
+forEach函数不能continue或者break
+
+filter 保留满足条件的元素
+map 集合中所有的元素一一映射到其他元素构成新集合
+flatMap 集合中所有元素一一映射到新集合并合并这些集合得到新集合
+
+asSequence 类似流,懒序列
+
+集合聚合操作
+sum 求和
+reduce 将元素依次按规则聚合,结果与元素类型一致
+fold 给定初始化值,将元素按规则聚合,结果与初始化值类型一致
+
+T.()->Unit 表示的是自身实例, 该参数本身就是一个函数,类型是T.()->Unit,
+它是一个带接收者的函数类型,意味着我们需要向函数传递一个HTML类型的实例(接收者),并且我们可以在函数内部
+调用该实例的成员,该接收者可以通过this关键字访问
+
+()->Unit 表示的是外部类的实例
+
+open 修饰的方法 表示方法可以重写
+ref1 = 类名::属性名 ref1.set(类对象,具体值) 类似java中field.set(object,属性值)
+ref2 = 类对象::属性名 ref2.set(具体值) 效果和上面一样
+java instanceof
+kotlin is
+(对象 as? 类)?.属性
+listOf 和 mapOf 不可变; mutableListOf 和 mutableMapOf 可变
+
+非空属性必须在定义的时候初始化,kotlin提供了一种可以延迟初始化的方案,
+使用 lateinit 关键字描述属性
+
+companion object{} 伴生对象的作用?
+object 不能定义构造器, 相当于java中的饿汉式单例
+@JvmStatic 访问静态方法
+@JvmField 访问静态变量
+
+内部类 inner clazz Inner
+静态内部类 clazz StaticInner
+匿名内部类省略了名字,支持多个接口
+object:Runnable,Cloneable{
+}
+
+数据类解构 component进行解构
+枚举 kotlin比java多了一个class
+
+
+
+

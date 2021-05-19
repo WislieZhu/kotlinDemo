@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/.gitignore
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/kotlinc.xml
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+KotlinPracticeDemo.iml
+lib/
+out/
+projectFilesBackup/
+src/baseknowledge/
+src/buildintypes/
+src/expressions/
+src/func_improve/
+src/high_func/
+src/huawei/
+src/lx/
+src/practise/
+src/sf/
+src/studytogether/
+
+
