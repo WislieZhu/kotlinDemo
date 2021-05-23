@@ -72,6 +72,8 @@ kotlin知识点
 
     k().invoke()
 
+    建议使用let,also,而run和apply会嵌套很多receiver
+
 类:
    1.abstract 抽象类
    2.final 不可被继承类
