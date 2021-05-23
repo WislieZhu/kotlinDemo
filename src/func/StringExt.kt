@@ -9,7 +9,7 @@ package func
 /**
  * 将首字母转换成大写字母
  */
-fun String.firstCharToUpperCase(str: String): String {
-    if (str.isNullOrEmpty()) return str
-    return str.replaceFirst(str[0], str[0].toUpperCase())
+inline fun String.firstCharToUpperCase(): String {
+    if (this.isNullOrEmpty()) return this
+    return replaceFirst(get(0),get(0).toUpperCase())
 }

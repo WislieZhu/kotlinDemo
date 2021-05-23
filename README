@@ -50,6 +50,28 @@ kotlin知识点
     尝试去实现他的一些方法，比如maxBy,filter
     简单的扩展函数，高阶扩展函数, 传参的完整写法和简写
 
+
+    val v = fun() {
+        println("变量持有函数引用")
+    }
+
+    fun f() = fun() {
+        println("函数f()持有函数引用")
+    }
+
+    fun k(): () -> Unit = {
+        println("函数k()持有()->Unit引用")
+    }
+
+    v()
+    //或者
+    v.invoke()
+
+    f().invoke()
+    f()()
+
+    k().invoke()
+
 类:
    1.abstract 抽象类
    2.final 不可被继承类
